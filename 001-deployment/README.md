@@ -64,11 +64,11 @@ The application uses the following Docker image:
 
 3. Create namespace (if not exists):
    ```bash
-   kubectl create namespace python-fastapi
+   kubectl create namespace demo
    ```
    Or switch namespace using kubens:
    ```bash
-   kubens python-fastapi
+   kubens demo
    ```
 
 4. Deploy the application:
