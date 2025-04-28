@@ -110,6 +110,19 @@ Access the app at http://localhost:8123.
 
 ## 5. Test the Service
 
+### Install locustfile
+
+```bash
+# This command runs a load test using Locust against your FastAPI app.
+# -f locustfile.py: Specifies the locust test file.
+# --host http://localhost:8123: Sets the target host (your FastAPI service).
+# --users 5: Simulates 5 concurrent users.
+# --spawn-rate 10: Spawns users at a rate of 10 per second.
+# --run-time 1m: Runs the test for 1 minute.
+# --headless: Runs Locust in the terminal (no web UI).
+uv run locust -f locustfile.py --host http://localhost:8123 --users 5 --spawn-rate 10 --run-time 1m --headless
+```
+
 In a new terminal, run:
 ```
 make 11-curl-service

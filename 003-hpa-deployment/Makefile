@@ -59,7 +59,10 @@ check:
 	kubectl get services -owide
 
 09-watch-pods:
-	watch -t -n 1 kubectl get pods -owide
+	watch -t -n 1 kubectl get pods
+
+09.1-watch-hpa:
+	watch -t -n 1 kubectl get hpa
 
 
 
@@ -85,13 +88,27 @@ check:
 #! open new terminal and run this command 
 11-curl-service:
 	while true; \
-		do curl -s http://localhost:8123/hostname; \
+		do curl -s http://localhost:8123/system/hostname; \
 		echo ""; \
 		sleep 0.33; \
 	done
 
+12-curl-for-load:
+	while true; \
+		do curl -X 'POST' \
+			'http://localhost:8123/todos' \
+			-H 'accept: application/json' \
+			-H 'Content-Type: application/json' \
+			-d '{ \
+				"title": "adasdasdasd", \
+				"description": "asdasdasdasd adasda dasd asd asda sdasddsadqwdqw", \
+				"completed": false \
+		}'; \
+		echo ""; \
+		sleep 0.02; \
+	done
 
-12-stop:
+13-stop:
 	@echo "Stopping the application..."
 	kubectl delete -f 003-hpa-deploy-fastapi-app.yaml
 	kubectl delete -f 003-deployment.yaml
