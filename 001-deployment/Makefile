@@ -52,4 +52,4 @@ port-forward:
 	@echo "Access the application at http://localhost:8080"
 	@echo "Press Ctrl+C to stop port forwarding."
 	@echo "---------------------"
-	kubectl port-forward svc/fastapi-todo-service 8080:80 -n python-fastapi
+	kubectl port-forward svc/fastapi-todo-service 8080:80 -n demo
