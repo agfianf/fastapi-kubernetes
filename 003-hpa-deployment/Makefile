@@ -57,6 +57,10 @@ check:
 	kubectl get hpa -owide
 	@echo "---------------------"
 	kubectl get services -owide
+	@echo "---------------------"
+	kubectl top pod
+	@echo "---------------------"
+	kubectl top nodes
 
 09-watch-pods:
 	watch -n 1 kubectl get pods
@@ -112,7 +116,7 @@ check:
 	@echo "Running Locust..."
 	uv run locust -f locustfile.py \
 	--host http://localhost:8123 \
-	--users 100 \
+	--users 10 \
 	--spawn-rate 10 \
 	--run-time 1m \
 	--headless
@@ -125,3 +129,6 @@ check:
 	@echo "Application stopped."
 	minikube stop -p demo-cluster
 	@echo "Minikube stopped."
+
+log-metrics:
+	kubectl logs -f deployment.apps/metrics-server -n kube-system
