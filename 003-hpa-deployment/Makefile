@@ -59,10 +59,10 @@ check:
 	kubectl get services -owide
 
 09-watch-pods:
-	watch -t -n 1 kubectl get pods
+	watch -n 1 kubectl get pods
 
 09.1-watch-hpa:
-	watch -t -n 1 kubectl get hpa
+	watch -n 1 kubectl get hpa
 
 
 
@@ -108,7 +108,17 @@ check:
 		sleep 0.02; \
 	done
 
-13-stop:
+13-run-locust:
+	@echo "Running Locust..."
+	uv run locust -f locustfile.py \
+	--host http://localhost:8123 \
+	--users 100 \
+	--spawn-rate 10 \
+	--run-time 1m \
+	--headless
+
+
+14-stop:
 	@echo "Stopping the application..."
 	kubectl delete -f 003-hpa-deploy-fastapi-app.yaml
 	kubectl delete -f 003-deployment.yaml
