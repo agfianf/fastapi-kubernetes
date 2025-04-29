@@ -9,10 +9,10 @@ class LoadTest(HttpUser):
     def test_root(self):
         self.client.get("/system/hostname")
 
-    @task(1)
+    @task(2)
     def test_cpu(self):
         self.client.get("/performance/cpu")
 
-    @task(1)
-    def test_memory(self):
-        self.client.get("/performance/memory")
+    # @task(1)
+    # def test_memory(self):
+    #     self.client.get("/performance/memory")

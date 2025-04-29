@@ -11,16 +11,22 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
+    # - type: Resource
+    #   resource:
+    #     name: memory
+    #     target:
+    #       type: Utilization
+    #       averageUtilization: 50
     - type: Resource
       resource:
-        name: memory
+        name: cpu
         target:
           type: Utilization
-          averageUtilization: 77
+          averageUtilization: 30
   behavior:
     scaleDown:
-      stabilizationWindowSeconds: 60
+      stabilizationWindowSeconds: 10
       policies:
       - type: Percent
         value: 100
-        periodSeconds: 15
+        periodSeconds: 10

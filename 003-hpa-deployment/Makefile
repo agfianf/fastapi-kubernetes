@@ -99,15 +99,7 @@ check:
 
 12-curl-for-load:
 	while true; \
-		do curl -X 'POST' \
-			'http://localhost:8123/todos' \
-			-H 'accept: application/json' \
-			-H 'Content-Type: application/json' \
-			-d '{ \
-				"title": "adasdasdasd", \
-				"description": "asdasdasdasd adasda dasd asd asda sdasddsadqwdqw", \
-				"completed": false \
-		}'; \
+		do curl -X 'GET' 'http://localhost:8123/performance/memory'; \
 		echo ""; \
 		sleep 0.02; \
 	done
@@ -116,17 +108,18 @@ check:
 	@echo "Running Locust..."
 	uv run locust -f locustfile.py \
 	--host http://localhost:8123 \
-	--users 10 \
+	--users 50 \
 	--spawn-rate 10 \
-	--run-time 1m \
+	--run-time 2m \
 	--headless
 
-
-14-stop:
+14-stop-deploy:
 	@echo "Stopping the application..."
 	kubectl delete -f 003-hpa-deploy-fastapi-app.yaml
 	kubectl delete -f 003-deployment.yaml
 	@echo "Application stopped."
+
+15-stop:
 	minikube stop -p demo-cluster
 	@echo "Minikube stopped."
 

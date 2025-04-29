@@ -22,14 +22,14 @@ spec:
         image: syinx/fastapi-todo-demo:v0.0.24
         resources:
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "500m"
           requests:
-            memory: "64Mi"
+            memory: "128Mi"
             cpu: "250m"
         env:
           - name: VERSION
-            value: "hpa-v22"
+            value: "hpa-v24"
         ports:
         - containerPort: 8000
 
