@@ -23,7 +23,11 @@
 	kubectl get pods -n kube-system | grep metrics
 	kubectl top nodes
 
+# if not installed, run the following command
 06-install:
+	@echo "Installing metrics server..."
+	@echo "This may take a few seconds..."
+	@echo "---------------------"
 	minikube addons list
 	minikube addons enable metrics-server
 	sleep 15
@@ -68,6 +72,8 @@ check:
 09.1-watch-hpa:
 	watch -n 1 kubectl get hpa
 
+09.2-watch-top-pods:
+	watch -n 1 kubectl top pod
 
 
 #! open new terminal and run this command 
