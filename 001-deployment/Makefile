@@ -53,3 +53,8 @@ port-forward:
 	@echo "Press Ctrl+C to stop port forwarding."
 	@echo "---------------------"
 	kubectl port-forward svc/fastapi-todo-service 8080:80 -n demo
+
+stop:
+	kubectl delete -f 001-simple-deploy-fastapi-app.yaml
+	@echo "Stopping minikube cluster..."
+	minikube stop
